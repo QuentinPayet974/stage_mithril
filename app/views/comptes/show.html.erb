@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+<br>
+
+<p>
+  <strong>Identifiant:</strong>
+  <%= @compte.identifiant %>
+</p>
+
+<p>
+  <strong>Mdp:</strong>
+  <%= @compte.mdp %>
+</p>
+
+<%= link_to 'Edit', edit_compte_path(@compte) %> |
+<%= link_to 'Back', comptes_path %>

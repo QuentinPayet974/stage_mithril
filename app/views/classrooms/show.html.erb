@@ -1,0 +1,78 @@
+<p id="notice"><%= notice %></p>
+
+<br>
+<p>
+  <strong>Students number:</strong>
+  <%= @classroom.students_number %>
+</p>
+
+<p>
+  <strong>Room number:</strong>
+  <%= @classroom.room_number %>
+</p>
+
+<%= link_to 'Edit', edit_classroom_path(@classroom) %> |
+<%= link_to 'Back', classrooms_path %>
+
+<h2>Liste des étudiants</h2>
+<i>Il y a <%= @classroom.students.count %> étudiants dans cette classe :</i>
+
+<!-- TEST pour voir si il t a des absent
+<%
+absent = @classroom.students.count - @classroom.students_number
+print absent
+ if @classroom.students.count < @classroom.students_number
+  print "il y a #{absent} absent"
+else
+  print 'la classe est complète'
+end 
+%>
+-->
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Birth date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @classroom.students.each do |student| %>
+        <tr>
+          <td><%= student.first_name.capitalize %></td>
+          <td><%= student.last_name.upcase %></td>
+          <td><%= student.birth_date %></td>
+          <td><%= link_to 'Show', student %></td>
+          <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<h2>Liste des professeurs</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Subject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @classroom.teachers.each do |teacher| %>
+        <tr>
+          <td><%= teacher.first_name.capitalize %></td>
+          <td><%= teacher.last_name.upcase %></td>
+          <td><%= teacher.subject.capitalize %></td>
+          <td><%= link_to 'Show', teacher %></td>
+          <td><%= link_to 'Edit', edit_student_path(teacher) %></td>
+          <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

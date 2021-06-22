@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<br>
+<h1>Classrooms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Max students number</th>
+      <th>Room number</th>
+      <th>Students number</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @classrooms.each do |classroom| %>
+      <tr>
+        <td><%= classroom.students_number %></td>
+        <td><%= classroom.room_number %></td>
+        <td><%= classroom.students.count %></td>
+        <td><%= link_to 'Show', classroom %>
+        <%if current_user.admin %>
+        <%= link_to 'Edit', edit_classroom_path(classroom) %>
+        <%= link_to 'Destroy', classroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>  
+
+<br>
+  <%if current_user.admin %>
+<%= link_to 'New Classroom', new_classroom_path %>
+  <%end%>

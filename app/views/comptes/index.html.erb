@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<br>
+<h1>Comptes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Identifiant</th>
+      <th>Mdp</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comptes.each do |compte| %>
+      <tr>
+        <td><%= compte.identifiant %></td>
+        <td><%= compte.mdp %></td>
+        <td><%= link_to 'Show', compte %>
+        <%= link_to 'Edit', edit_compte_path(compte) %>
+        <%= link_to 'Destroy', compte, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Compte', new_compte_path %>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MonApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <!-- Header/ Menu -->
+<header>
+  <img width="100" height="100" src="https://img.icons8.com/ios/500/google-classroom.png"> <!--logo-->
+
+<ul>
+  <li > <a href="/" >Accueil</a></li>
+  <%if current_user%>
+  <li><%= link_to 'Classes', classrooms_path%> </li>
+  <li><%= link_to 'Teachers', teachers_path %></li>
+  <li><%= link_to 'Students', students_path %></li>
+  <li><%= link_to 'About', about_path %></li>
+  <%end%>
+  <%if current_user%>
+  <li><%=link_to "Logout", destroy_user_session_path, method: :delete%></li>
+  <%else%>
+  <li><%= link_to 'Login', user_session_url%></li>
+  <li><%= link_to 'Sign up', new_user_registration_path%>
+  <%end%>
+</ul>
+</header>
+
+  <body>
+  <div>
+  <img src="data:image/png;base64,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"
+     alt="Grapefruit slice atop a pile of other slices">
+  </div>
+<%= yield %>
+  </body>
+  <br>
+  <br>
+  <!-- Footer -->
+<footer>
+<div class="footer">
+  <%= link_to 'A propos', '/about' %>
+</div>
+<div class="footer">
+  <%= link_to 'Conditions générals', '/about' %>
+</footer>
+<div class="footer">
+  <%= link_to 'Dautres choses', '/about' %>
+</footer>
+
+</html>
